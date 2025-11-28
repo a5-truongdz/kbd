@@ -14,3 +14,6 @@ $ pip install -r requirements.txt
 ```
 # usermod -aG input <username>
 ```
+
+# License
+MIT

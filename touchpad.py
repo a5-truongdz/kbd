@@ -1,23 +1,22 @@
 import libevdev
 import glob
 import os
-import random
 
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 import pygame
 pygame.mixer.init()
 
-LEFT = [libevdev.BTN_LEFT, libevdev.BTN_TOUCH]
+LEFT: list[int] = [libevdev.BTN_LEFT, libevdev.BTN_TOUCH]
 
-leftClick = pygame.mixer.Sound("g502x-wireless/primary_down.wav")
-leftRelease = pygame.mixer.Sound("g502x-wireless/primary_up.wav")
-rightClick = pygame.mixer.Sound("g502x-wireless/secondary_down.wav")
-rightRelease = pygame.mixer.Sound("g502x-wireless/secondary_up.wav")
-middleClick = pygame.mixer.Sound("g502x-wireless/middle.wav")
+leftClick: pygame.mixer.Sound = pygame.mixer.Sound("g502x-wireless/primary_down.wav")
+leftRelease: pygame.mixer.Sound = pygame.mixer.Sound("g502x-wireless/primary_up.wav")
+rightClick: pygame.mixer.Sound = pygame.mixer.Sound("g502x-wireless/secondary_down.wav")
+rightRelease: pygame.mixer.Sound = pygame.mixer.Sound("g502x-wireless/secondary_up.wav")
+middleClick: pygame.mixer.Sound = pygame.mixer.Sound("g502x-wireless/middle.wav")
 
-events = glob.glob("/dev/input/event*")
+events: list[str] = glob.glob("/dev/input/event*")
 global fd
-f = False
+f: bool = False
 for event in events:
     fd = libevdev.Device(open(event, "rb"))
     if fd.has(libevdev.EV_ABS):
